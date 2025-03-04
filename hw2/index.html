@@ -32,15 +32,15 @@
 
 		<br>
 
-		Link to webpage: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
+		Link to webpage: <a href="https://cal-cs184-student.github.io/hw-webpages-robertni/">cal-cs184-student.github.io/hw-webpages-robertni/</a>
 
 		<br>
 		
-		Link to GitHub repository: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
+		Link to GitHub repository: <a href="https://github.com/cal-cs184-student/sp25-hw2-robertn">github.com/cal-cs184-student/sp25-hw2-robertn</a>
 
 		<figure>
-			<img src="teapot.png" alt="Teapot" style="width:50%"/>
-			<figcaption>You can add images with captions!</figcaption>
+			<img src="teapotjoke.png" alt="Teapot" style="width:50%"/>
+			<figcaption>Teapot in all its glory</figcaption>
 		</figure>
 
 		<!--
@@ -48,7 +48,10 @@
 		-->
 
 		<h2>Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
+		In this homework, we explored creating 3D images in a variety of ways. Firstly, we investigated Bezier curves and used linear interpolation to 
+		get smooth curves between a set of control points. Next, we learned about triangle meshes and halfedges, which can be used to draw out 3D structures
+		using a simple mesh of triangles. Throughout this process, I found it really interesting how we can simplify tasks that I would assume are extremely 
+		difficult into simple data structures and methods. 
 
 		<h2>Section I: Bezier Curves and Surfaces</h2>
 
@@ -71,29 +74,29 @@
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="Task1/Task1Part1_step0.png" width="400px"/>
+				  <img src="Task1/Task1Part1_step0.png" width="300px"/>
 				  <figcaption>Start with 6 control points.</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="Task1/Task1Part1_step1.png" width="400px"/>
+				  <img src="Task1/Task1Part1_step1.png" width="300px"/>
 				  <figcaption>First step of interpolation.</figcaption>
 				</td>
 				<td style="text-align: center;">
-					<img src="Task1/Task1Part1_step2.png" width="400px"/>
+					<img src="Task1/Task1Part1_step2.png" width="300px"/>
 					<figcaption>Second step of interpolation.</figcaption>
 				</td>
 			  </tr>
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="Task1/Task1Part1_step3.png" width="400px"/>
+				  <img src="Task1/Task1Part1_step3.png" width="300px"/>
 				  <figcaption>Third step of interpolation.</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="Task1/Task1Part1_step4.png" width="400px"/>
+				  <img src="Task1/Task1Part1_step4.png" width="300px"/>
 				  <figcaption>Fourth step of interpolation.</figcaption>
 				</td>
 				<td style="text-align: center;">
-					<img src="Task1/Task1Part1_step5.png" width="400px"/>
+					<img src="Task1/Task1Part1_step5.png" width="300px"/>
 					<figcaption>Connecting all final interpolated points.</figcaption>
 				</td>
 			  </tr>
@@ -108,15 +111,15 @@
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="Task1/Task1Part1_t1.png" width="400px"/>
+				  <img src="Task1/Task1Part1_t1.png" width="300px"/>
 				  <figcaption>Smaller t value.</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="Task1/Task1Part1_t0.png" width="400px"/>
+				  <img src="Task1/Task1Part1_t0.png" width="300px"/>
 				  <figcaption>Medium t value.</figcaption>
 				</td>
 				<td style="text-align: center;">
-					<img src="Task1/Task1Part1_t2.png" width="400px"/>
+					<img src="Task1/Task1Part1_t2.png" width="300px"/>
 					<figcaption>Larger t value.</figcaption>
 				</td>
 			  </tr>
@@ -135,37 +138,221 @@
 
 		<p>The figure below is an example of creating a teapot using this process.</p>
 		<figure>
-			<img src="Task1/Task1Part2.png" alt="Teapot" style="width:50%"/>
+			<img src="Task1/Task1Part2.png" alt="Teapot" style="width:100%"/>
 			<figcaption>Teapot made from Bezier surfaces.</figcaption>
 		</figure>
 
 		<h2>Section II: Triangle Meshes and Half-Edge Data Structure</h2>
 
 		<h3>Part 3: Area-weighted vertex normals</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		In this section, I created area-weighted vertex normals by using half-edges. From the given vertex, you can get the current 
+		half-edge and then grab the edge from that half-edge. I updated the half-edge to half-edge->next() to get the next half-edge 
+		and do this to get the three edges of one triangle. From these, we can get their lengths, which can be used to get the area of a triangle 
+		using the equation below:
+		<p></p>
+		\[ Area = &radic;(s(s-a)(s-b)(s-c)) \]
+		<center>
+			where \( s = (a + b + c) / 2 \)
+		</center>
+		<br>
+		<pr>
+			I multiply this area by the triangle face normal (halfedge->face()->normal()) and store the value. Once all faces adjacent to teh vertex have been 
+			looped through, all the area x normal values are summed together and normalized (set to have length 1). This value is returned as the vertex normal.
+		</pr>
+
+		<p>The images below show an example of using no vertex normals (flat shading) vs. using vertex normals (Phong shading).</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Part3/Section3_flat.png" width="400px"/>
+				  <figcaption>Flat shading</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part3/Section3_phong.png" width="400px"/>
+				  <figcaption>Phong shading</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 
 		<h3>Part 4: Edge flip</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+		<figure>
+			<img src="sheldonPart4.png" alt="Sheldon" style="width:50%"/>
+			<figcaption>Me thinking I accounted for and updated all pointers of all elements and then realizing that I in fact did not account for and update all pointers of all elements.</figcaption>
+		</figure>
+		<p></p>
+		To flip edges, I mainly followed the procedure as recommended in the project
+		description. First, I defined every element in the mesh relevant to this flip, including ten halfedges, 
+		four vertices, four edges (besides the input edge), and two faces. Then, I used setNeighbors() to reset all 
+		of the neighboring elements to each of the halfedges to be accurate to how they would look after the edge is flipped.
+		The last step was to then take all of the elements in this mesh that aren't halfedges and set their halfedge pointers
+		to a correct halfedge.  
+		<p>An example of using edge flips is shown below.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Part4/Part4_noedits.png" width="400px"/>
+				  <figcaption>Original teapot</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part4/Part4_edge_selected.png" width="400px"/>
+				  <figcaption>Select an edge (in magenta)</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Part4/Part4_edgeflip.png" width="400px"/>
+				  <figcaption>Flip selected edge</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part4/Part4_edgeflip_multipl.png" width="400px"/>
+				  <figcaption>Multiple edge flips</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p></p>
+		In general, throughout Parts 4, 5, and 6, the meme of Sheldon above basically describes my entire debugging experience in all parts.
+		During the course of writing this code, I was able to avoid too much errors and debugging by following the steps given by the project specs. 
+		With that being said, I encountered trouble when first writing this code and when I was still getting familiar with implementing things with halfedges,
+		leading to issues where I was not being careful enough with accounting for all mesh elements. In specific, I didn't define some of the relevant halfedges,
+		which resulted in incorrect meshes where the neighbors of halfedges were not reset properly. 
+		<a href="http://15462.courses.cs.cmu.edu/fall2015content/misc/HalfedgeEdgeOpImplementationGuide.pdf">The guide linked here</a> helped me a ton
+		by making sure I really got every mesh element and updated everything properly (I found this guide from the HW2 Part 4 Ed discussion thread).
+		
 		<h3>Part 5: Edge split</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		To edge split, I followed the same procedure as edge flipping, just with more details involved. In this case, I had to define one new vertex, 
+		two new faces, three new edges, and six new halfedges that would exist after the split. Then, I proceeded in the same way as in edge flipping, 
+		first keeping track of all the mesh elements neighboring the edge to be split, creating the new elements, and then taking the new elements and the 
+		original mesh elements and setting neighbors and halfedge pointers as appropriate. Interestingly enough, initially, it seemed like performing edge split required less debugging
+		and overall time to do than the edge flip now that I was aware that I had to be more careful and think more about every element involved. However,
+		there was actually a bug that I didn't realize was an error until Part 6, and I used up a lot of time in Part 6 wondering why my upsampling was not working 
+		when I realized that it was actually because I had not set up my halfedge pointers for the edges properly, leading to some edges not having the correct 
+		halfedge associated with it. 
+		<p>The images below show an example of doing edge splits.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Part5/Part5_orig.png" width="300px"/>
+				  <figcaption>Original teapot</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part5/Part5_somesplit.png" width="300px"/>
+				  <figcaption>Some edge splits</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part5/Part5_splitandflip.png" width="300px"/>
+				  <figcaption>More splits as well as flips</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 
 		<h3>Part 6: Loop subdivision for mesh upsampling</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		To upsample, I followed the recommended steps from the project spec. First, I calculated the new positions of the existing vertices in the mesh and stored
+		them in vertex->newPosition. Then, I calculated the new positions of the vertices that we will eventually add and stored them in edge->newPosition, where 
+		edge is the edge that the new vertex will lie on. To get these new positions, I used the formulas described in the project spec, traversing the mesh as necessary to get the vertices/values required. Then, I split the edges and set the created vertex's new position to be the correspodning
+		edge's new position. Then, I flipped any edge that connected an old and new vertex. Lastly, since we have defined and calculated all new positions
+		of both old and new vertices, I updated the position of every vertex in the mesh. 
 
-		<h2>(Optional) Section III: Potential Extra Credit - Art Competition: Model something Creative</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<p>
+			As mentioned in Part 5, I spent quite a bit of time debugging Part 6 because even though I felt that I was going through every part of this process very 
+			carefully, it still seemed that my loop subdivision was not looking correct. By commenting out certain later steps and testing each step one by one, I realized
+			that the edge splitting step always seemed to look a little off. I eventually realized that I had actually done Part 5 incorrectly, causing issues with
+			Part 6. After fixing my halfedge pointer issues as mentioned above, Part 6 also worked. 
+		</p>
 
-		<h2>Additional Notes (please remove)</h2>
-		<ul>
-			<li>You can also add code if you'd like as so: <code>code code code</code></li>
-			<li>If you'd like to add math equations, 
-				<ul>
-					<li>You can write inline equations like so: \( a^2 + b^2 = c^2 \)</li>
-					<li>You can write display equations like so: \[ a^2 + b^2 = c^2 \]</li>
-				</ul>
-			</li>
-		</ul>
+		<p>Running this code a couple of times, I observed that loop subdivision made a visible improvement to the smoothness of a surface. For example, 
+			the below picture shows how a torus goes from blocky to smooth and rounded. The sharp corners and edges round out to form a continuous surface 
+			the more loop subdivision iterations you do.
+		</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Part6/torus/Part6_torus0.png" width="300px"/>
+				  <figcaption>Original torus</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part6/torus/Part6_torus3.png" width="300px"/>
+				  <figcaption>Upsampled three times</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p></p>
+		It's also interesting to note that splitting edges before loop subdivision can produce noticeably different results and change the overall shape. If the shape 
+		is perfectly symmetrical and then an edge is split, the loop subdivision will further emphasize asymmetry or add sharp points/corners. This is shown below in the 
+		image of the torus, but with a few edges split.
+		<p></p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Part6/torus/Part6_torussplit0.png" width="300px"/>
+				  <figcaption>Torus with split edges</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part6/torus/Part6_torussplit1.png" width="300px"/>
+				  <figcaption>Upsampled three times, not a perfect torus</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p></p>
+		Likewise, it seems that smartly splitting edges can change sharp corners or edges into a smooth surface or make surfaces more symmetrical. This is shown 
+		with the cube below. The initial cube, when loop subdivision is applied, would look like this:
+		<p></p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Part6/cube/Part6_cube0.png" width="300px"/>
+				  <figcaption>Original cube</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part6/cube/Part6_cube1.png" width="300px"/>
+				  <figcaption>Upsampled one time</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Part6/cube/Part6_cube2.png" width="300px"/>
+				  <figcaption>Upsampled two times</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part6/cube/Part6_cube3.png" width="300px"/>
+				  <figcaption>Upsampled three times</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p></p>
+		If we split every edge running across each face of the cube, we can create a symmetrical shape, which will make the final upsampled image symmetrical.
+		<p></p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Part6/cube/Part6_cubesplit0.png" width="300px"/>
+				  <figcaption>Cube with split edges</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Part6/cube/Part6_cubesplit1.png" width="300px"/>
+				  <figcaption>Upsampled three times</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p></p>
+		The pre-processing matters because without it, we are rounding out the vertices on each face that don't have a diagonal edge running through it more than the vertices
+		that have a diagonal running through it. Since they round out faster, we end up with cases where there are pointy parts where the vertices that had a diagonal running through it were. 
+		With pre-processing, we can ensure that every vertex has the same degree, and therefore will be affected equally by loop subdivision rather than having some round out more than others.
+
+		
 		</div>
 	</body>
 </html>
